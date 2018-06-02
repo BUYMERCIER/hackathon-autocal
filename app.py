@@ -41,10 +41,15 @@ def api(uid=None, service=None):
     if service == 'taxi':
         time = str(content['time'])
         location = content['location']
-        ret = first_name + ' wants to order a taxi at ' + time
-        ret += '<br>location: ' + location
-        with open('client.html', 'w') as f:
-            print(ret, file=f)
+        ret = '''<tr>
+                    <td>{}</td>
+                    <td>{}</td>
+                    <td>{}</td>
+                    <td>{}</td>
+                    <td>{}</td>
+                </tr>'''.format(str(uid), first_name, service, location, time)
+        with open('client.html', 'a') as f:
+            f.write(ret)
         return ret
     # food_delivery
     if service == 'food_delivery':
